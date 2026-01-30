@@ -10,6 +10,10 @@ import DettagliProdotto from "./pages/DettagliProdotto"
 // import layout
 import DefaultLayout from "./layouts/DefaultLayout";
 
+// import provider 
+
+import { BudgetProvider } from "./components/contexts/BudgetContext";
+
 import './App.css'
 
 function App() {
@@ -17,18 +21,20 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route index element={<Homepage />} />
-            <Route path="/chisiamo" element={<ChiSiamo />} />
-            <Route path="/prodotti">
-              <Route index element={<Prodotti />} />
-              <Route path=":id" element={<DettagliProdotto />} />
+      <BudgetProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route index element={<Homepage />} />
+              <Route path="/chisiamo" element={<ChiSiamo />} />
+              <Route path="/prodotti">
+                <Route index element={<Prodotti />} />
+                <Route path=":id" element={<DettagliProdotto />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </BudgetProvider>
     </>
   )
 }
